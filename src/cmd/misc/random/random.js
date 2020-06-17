@@ -21,12 +21,13 @@ exports.chirp = {
     async main(bot, ctx) {
         await ctx.channel.sendTyping();
 
-        let res = await got('https://random.birb.pw/tweet');
+        let res = await got('https://some-random-api.ml/img/birb');
+         res = JSON.parse(res.body).link;
 
         await ctx.createMessage({embed: {
             title: 'What a cute little birby!',
-            image: {url: `https://random.birb.pw/img/${res.body}`},
-            footer: {text: 'Powered by random.birb.pw'}
+            image: {url: res},
+            footer: {text: 'Powered by Some Random API'}
         }});
     }
 };
@@ -36,8 +37,8 @@ exports.meow = {
     async main(bot, ctx) {
         await ctx.channel.sendTyping();
 
-        let res = await got('http://random.cat/meow');
-        res = JSON.parse(res.body).file;
+         let res = await got('http://aws.random.cat/meow');
+         res = JSON.parse(res.body).file;
 
         await ctx.createMessage({embed: {
             title: 'Nyaaa~',
